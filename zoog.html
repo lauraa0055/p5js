@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>p5js Template</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.3/p5.js"></script>
+    
+    <script>
+        function setup() {
+            createCanvas(800,600);
+        }
+
+        function draw() {
+        background(66, 241, 244)
+        
+        fill(255)
+        stroke(244,66,69)//baby blue/turquiose
+        strokeWeight(20)
+        ellipse(300,300,400,300)//head
+        
+        strokeWeight(13)
+        fill(237, 90, 119)//pinkish color 
+        ellipse(110,110,200,200)//ear
+        ellipse(510,110,200,200)//ear
+
+        fill(255)
+        stroke(0)
+        strokeWeight(9)
+        ellipse(200,300,90,90)//eye
+        ellipse(400,300,90,90)//eye
+        
+        point(420,300)
+        point(220,300)
+        
+        line(200,400,400,400)
+        
+        point(200,440)
+        
+        point(400,440)
+        
+        fill(244, 164, 66)//orange kinda
+        rect(110,460,400,120)
+        
+        strokeWeight(10)
+        textSize(90)
+        fill(125, 43, 175)
+        text("What...", 170,550)
+        
+       noFill()
+       stroke(43, 28, 112)
+       curve(540,450,110,460,110,580,500,400)
+       curve(540,450,511,460,200,100,50,400)
+      
+        
+        
+        
+        }
+    </script>
+</head>
+
+<body>
+    <div id="code" class="container-fluid">
+        <script src="https://gist-it.appspot.com/github/lauraa0055/p5js/blob/master/zoog.html?footer=0"></script>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(window).bind("load", function() {
+            $('#code').before($('#defaultCanvas0').remove());
+        });
+    </script>
+</body>
+
+
+
+
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>p5js Template</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.3/p5.js"></script>
+
+    <script>
+        var dia;
+        var value = 0;
+
+        function setup() {
+            createCanvas(800, 800);
+            dia = 100
+            milk = 200
+        }
+
+
+        function draw() {
+            background(random(255),random(255),random(255), 20)//the background color will be changing 24/7
+                fill(value)
+                rect(random(676),random(676),50,50);//the squares that randomly pop up
+                rect(random(676),random(676),50,50);
+                rect(random(676),random(676),50,50);
+                rect(random(676),random(676),50,50)
+
+                fill(random(255),random(255),random(255));
+                rect(CENTER)
+                rect(mouseX-200,mouseY-210,milk+200,milk+200); //the square that the head of the clown is in
+
+                stroke(random(255),random(255),random(255));
+                strokeWeight(12);
+                line(random(800),random(800),mouseX,mouseY);//the lines coming out out of the clown
+
+                fill(255)
+                ellipse(mouseX,mouseY,dia+300,dia+300);//head
+
+                fill(random(255),random(255),random(255));
+                ellipse(mouseX-80,mouseY,dia,dia);//left eye
+                ellipse(mouseX+80,mouseY,dia,dia);//right eye
+
+                fill(random(244),random(66),random(66));
+                ellipse(mouseX,mouseY+80,dia+100,dia+100);//the nose of the clown
+
+
+            };
+
+            function mouseDragged(){
+                dia--  //whenever you drag the mouse, the ellipses will get smaller 
+            };
+
+            function keyPressed(){
+                dia= 100
+                milk = 200//whenever a key is pressed, it will reset
+            };
+
+            function mousePressed(){
+                milk++ //when the mouse is pressed, the big square gets bigger
+            };
+
+            function mouseClicked(){
+                if( value === 0 ){
+                    value = random(255)
+                } else{
+                    value = 0
+                } //when the mouse is clicked, the little sqaures will either have a fill of white, black, or gray  
+            };
+    </script>
+</head>
+
+<body>
+    <div id="code" class="container-fluid">
+        <script src="https://gist-it.appspot.com/github/lauraa0055/p5js/blob/master/interaction-project.html?footer=0"></script>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(window).bind("load", function() {
+            $('#code').before($('#defaultCanvas0').remove());
+        });
+    </script>
+</body>
+
+
+</html>

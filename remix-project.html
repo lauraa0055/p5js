@@ -18,6 +18,7 @@
         var x;
         var lol = false;
         var lel = false;
+        var go = false;
 
         // 437
         // 573
@@ -63,16 +64,29 @@
                 text("HAAAAA", 0, 200)
                 text("YOU LOST >:)", 0, 400)
             }
+            
+            if(go == false){
+            squares(x, bannana, 244, 19, 42)//red rect
+            squares(x, orange + 37,  244, 19, 42)//red rect
+            squares(x, apple, 21, 237, 35) //green rect
+            squares(x, orange + 173, 244, 19, 42)//red rect
+            }
+        }
+        
+        
+        function mousePressed(){
+            go = true 
         }
 
         //this function makes the sqaures move either up or down 
-
-        function squareMove() {
+        function squareMove(){
+            if (go == true){
             if (bannana > 0 || orange > 0 || apple > 0) {
                 bannana -= 2
                 orange -= 2
                 apple += 2
             }
+        }
         }
 
         //this functions will determine wether or not the ball touched one of the squares or not

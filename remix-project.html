@@ -1,0 +1,198 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>Pong</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.13/p5.js"></script>
+    <script>
+        var ballX;
+        var ballY;
+        var ballSpeedX = 5;
+        var ballSpeedY = 5;
+        var paddleHeight = 30;
+        var rectY = 300;
+        var paddleWidth = 100;
+        var apple = 26;
+        var bannana = 150;
+        var orange = 400;
+        var x;
+        var lol = false;
+        var lel = false;
+
+        // 437
+        // 573
+
+        function setup() {
+            createCanvas(800, 600);
+            noCursor();
+            ballX = random(width);
+            ballY = random(height);
+        }
+
+        function draw() {
+            background(random(0,255));
+            rectMode(CENTER)
+            x = 26
+            squares(x, bannana, 244, 19, 42)//red rect
+            squares(x, orange + 37,  244, 19, 42)//red rect
+            squares(x, apple, 21, 237, 35) //green rect
+            squares(x, orange + 173, 244, 19, 42)//red rect
+
+
+            moveBall();
+            checkCollide();
+            drawPaddle();
+            drawBall();
+            squareMove();
+            TouchSquare();
+            
+            
+            // these two basically say that if the ball touched either the green or red square
+            //then say that they either won or lost 
+            if (lol == true) {
+                textSize(100)
+                background("green")
+                text("you have", 0, 200)
+                text("WON!!!", 0, 400)
+
+            }
+            
+            if(lel == true){
+                background("red")
+                textSize(100)
+                text("HAAAAA", 0, 200)
+                text("YOU LOST >:)", 0, 400)
+            }
+        }
+
+        //this function makes the sqaures move either up or down 
+
+        function squareMove() {
+            if (bannana > 0 || orange > 0 || apple > 0) {
+                bannana -= 2
+                orange -= 2
+                apple += 2
+            }
+        }
+
+        //this functions will determine wether or not the ball touched one of the squares or not
+        //if they do, it will basically signal a statement and change it from it being false to true
+        function TouchSquare() {
+            //if (ballY < 30) {
+            if (ballX > x && ballX < x + 50 && ballY > apple && ballY < apple + 50) {
+                lol = true
+            }
+            else if(ballX > x && ballX < x + 50 && ballY > bannana && ballY < bannana + 50){
+                lel = true
+            }
+            else if (ballX > x && ballX < x + 50 && ballY > orange && ballY < orange + 50){
+                lel = true 
+            }
+        }
+
+        //easier way to make squares
+        function squares(x, y, r, g, b) {
+            fill(r, g, b)
+            rect(x, y, 50, 50)
+        }
+
+
+        //if you click the mouse, then the paddle will rotate
+        function mouseClicked() {
+            if (paddleHeight == 30 && paddleWidth == 100) {
+                paddleHeight = 100
+                paddleWidth = 30
+            }
+            else if (paddleHeight == 100 && paddleWidth == 30) {
+                paddleHeight = 30
+                paddleWidth = 100
+            }
+        }
+
+        //what causes the ball to move 
+        function moveBall() {
+            // ballX = ballX + ballSpeedX;
+            ballX += ballSpeedX * -2
+            //ballY = ballY + ballSpeedY;
+            ballY += ballSpeedY * -2
+            ballY++
+
+            console.log("ballSpeedX: " + ballSpeedX +
+                ", ballSpeedY: " + ballSpeedY);
+
+        }
+
+
+        //this function checks if the ball touched either sides of the canvas or paddle
+        //if it did, the ball will bounce a certain way
+        function checkCollide() {
+            if (ballX < 0 || ballX > width) {
+                ballSpeedX = ballSpeedX * -1;
+
+            }
+
+            if (ballY < 0 || ballY > height) {
+                ballSpeedY = ballSpeedY * -1;
+                ballSpeedX - 1
+            }
+
+
+
+            if (ballY = 300) {
+                if (ballX > mouseX - 50 && ballX < mouseX + 50) {
+                    ballSpeedX = ballSpeedX * -1
+
+                }
+
+                if (ballY > paddleHeight + 30 && ballY < paddleHeight) {
+                    ballSpeedY = ballSpeedY * -1
+                    ballSpeedY - 1
+                }
+            }
+        }
+
+
+
+        //easy way to draw a ball
+        function drawBall() {
+            noStroke();
+            fill("blue")
+            ellipse(ballX, ballY, 20, 20);
+
+        }
+        
+        //easy way to draw the two paddles
+        function drawPaddle() {
+            strokeWeight(4);
+            //rect(mouseX, height - paddleHeight - 4, 200, paddleHeight);
+            rect(mouseX, rectY, paddleWidth, paddleHeight)
+
+            if (paddleHeight == 30 && paddleWidth == 100) {
+                rect(mouseX, mouseY, paddleWidth, paddleHeight)
+            }
+
+            else {
+                rect(mouseX, mouseY, paddleWidth, paddleHeight)
+            }
+        }
+
+       
+    </script>
+</head>
+
+<body>
+<form><input TYPE="button" onClick="history.go(0)" value="Reset"></form>
+    <div id="code" class="container-fluid">
+        <script src="https://gist-it.appspot.com/github/lauraa0055/p5js/blob/master/remix-project.html?footer=0"></script>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(window).bind("load", function() {
+            $('#code').before($('#defaultCanvas0').remove());
+        });
+    </script>
+</body>
+
+
+</html>

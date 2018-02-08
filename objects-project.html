@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>p5js Template</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.3/p5.js"></script>
+
+    <script>
+        var numbercircles = [];
+        var Xs = [100, 200, 300, 400, 500, 600, 650]
+        var x = 30;
+        var x2 = 200;
+
+        function setup() {
+            createCanvas(800, 600);
+
+        }
+
+        function draw() {
+            background(0)
+            person()
+
+            //displays the circles
+            for (var i = 0; i < numbercircles.length; i++) {
+                numbercircles[i].go();
+                numbercircles[i].display();
+            }
+
+            saw(255, 255, 255)
+
+        }
+
+
+        function saw(r, g, b) {
+            ellipse(20, 30, 100, 100)
+        }
+
+
+        function person() {
+
+            //changes the background 
+            if (keyCode == 65) {
+                background("purple") //a key 
+            }
+
+            //adds the text
+            else if (keyCode == 81) {
+                text("water works best when wet", x, 100) //q key
+            }
+
+            else if (keyCode == 67) {
+                text("I take a-fence", 100, 300) //c key
+
+            }
+
+
+            if (keyCode == DOWN_ARROW) {
+                textSize(20)
+                text(":')", Xs[0], 300)
+                text("Why am i here", Xs[1], 100)
+                text("What is life", Xs[2], 300)
+                text("Is this fun?", Xs[3], 400)
+                text("I hope you having fun", Xs[4], 500)
+                text("Im bored", Xs[5], 600)
+                text("Help", Xs[6], 750)
+
+            }
+        }
+
+        //making the circles 
+        function Circle() {
+            this.size = 50
+            this.x = random(width)
+            this.y = random(height)
+
+            //speed 
+            this.speed = 10
+
+            //the fill
+            this.r = random(255)
+            this.g = random(255)
+            this.b = random(255)
+
+            //makes the circle move and change speed, up and down anyways
+            this.go = function() {
+                this.y += random(1, 10)
+
+                if (this.y > height) {
+                    this.y *= -1
+                }
+
+                else if (this.y < 0) {
+                    this.y *= -1
+                }
+
+                if (keyCode == UP_ARROW) {
+                    this.y += this.speed
+                }
+
+                else if (keyCode == DOWN_ARROW) {
+                    this.y += this.speed * -1
+                }
+            }
+
+
+            //makes the circle
+            this.display = function() {
+                // noStroke();
+                //fill(255);
+
+
+
+
+                ellipse(this.x, this.y, this.size, this.size);
+
+                if (this.x > width / 2) {
+                    strokeWeight(20)
+                    stroke(random(255), random(255), random(255))
+                }
+                //changes the size when certain key is pressed 
+                if (keyCode == 66) {
+                    this.size++
+                }
+
+                else if (keyCode == 83) {
+                    this.size--
+                }
+
+                //the colors will flash when a circle hits the middle of the screen
+                //but the color will be chosen once it's off the screen 
+                if (this.y > height / 2) {
+                    fill(80, 229, 120)
+                }
+
+                else if (this.y < height / 2) {
+                    fill(78, 229, 226)
+                }
+            }
+        }
+
+
+        //the user chooses how many circles they want, and that amount of circles will be displayed 
+        function mousePressed() {
+            var player21 = prompt("How many circles would you like?")
+            for (i = 0; i < player21; i++) {
+                numbercircles.push(new Circle())
+            }
+        }
+    </script>
+</head>
+
+<body>
+<form><input TYPE="button" onClick="history.go(0)" value="Reset"></form>
+    <div id="code" class="container-fluid">
+        <script src="https://gist-it.appspot.com/github/lauraa0055/p5js/blob/master/objects-project.html?footer=0"></script>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(window).bind("load", function() {
+            $('#code').before($('#defaultCanvas0').remove());
+        });
+    </script>
+</body>
+
+
+</html>
